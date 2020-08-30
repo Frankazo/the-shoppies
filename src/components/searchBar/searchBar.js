@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
+import {indexMovies} from '../api/OMDb.js'
 
 
 const layout = {
@@ -20,6 +21,10 @@ const tailLayout = {
 const SearchBar = () => {
   const onFinish = values => {
     console.log('Success:', values);
+
+    indexMovies(values.Title)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
   };
 
   const onFinishFailed = errorInfo => {
